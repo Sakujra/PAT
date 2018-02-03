@@ -1,7 +1,9 @@
+package PAT;
+
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Main {
+public class $1012 {
 
     static Scanner scanner = new Scanner(System.in);
 
