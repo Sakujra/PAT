@@ -1,6 +1,8 @@
+package PAT;
+
 import java.util.Scanner;
 
-public class Main {
+public class $1011 {
 
     static Scanner scanner = new Scanner(System.in);
 
