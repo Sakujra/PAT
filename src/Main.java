@@ -1,63 +1,36 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Vector;
 
 public class Main {
+
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
-            int count = Integer.parseInt(reader.readLine().trim());
-            Vector<Account> vector = new Vector<>();
-            for (int i = 0; i < count; i++) {
-                String[] strArr = reader.readLine().split(" ");
-                if (isNeedModified(strArr[1])) {
-                    vector.add(new Account(strArr[0], strArr[1]));
+            String[] arrStr = reader.readLine().split(" ");
+            int[][] arrValue = new int[10001][2];
+            for (int i = 1; i < arrStr.length; i++) {
+                int index = Integer.parseInt(arrStr[i]);
+                arrValue[index][0]++;
+                arrValue[index][1] = i;
+            }
+            int minSeq = Integer.MAX_VALUE;
+            int first = -1;
+            for (int i = 1; i < arrValue.length; i++) {
+                if (arrValue[i][0] == 1) {
+                    if (arrValue[i][1] < minSeq) {
+                        minSeq = arrValue[i][1];
+                        first = i;
+                    }
                 }
             }
-            if (vector.size() == 0) {
-                if (count == 1) System.out.println("There is 1 account and no account is modified");
-                else System.out.println("There are " + count + " accounts and no account is modified");
-            } else {
-                modifiedAndPrint(vector);
+            if (first!=-1) {
+                System.out.println(first);
+            }else{
+                System.out.println("None");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    static void modifiedAndPrint(Vector<Account> vector) {
-        int size = vector.size();
-        System.out.println(size);
-        for (int i = 0; i < size; i++) {
-            Account account = vector.get(i);
-            char[] chars = account.psw.toCharArray();
-            for (int j = 0; j < chars.length; j++) {
-                if (chars[j] == '1') chars[j] = '@';
-                else if (chars[j] == '0') chars[j] = '%';
-                else if (chars[j] == 'l') chars[j] = 'L';
-                else if (chars[j] == 'O') chars[j] = 'o';
-            }
-            System.out.println(account.id + " " + new String(chars));
-        }
-    }
-
-    static boolean isNeedModified(String s) {
-        if (s.contains("1")) return true;
-        if (s.contains("0")) return true;
-        if (s.contains("l")) return true;
-        if (s.contains("O")) return true;
-        return false;
-    }
-}
-
-class Account {
-
-    public Account(String p0, String p1) {
-        id = p0;
-        psw = p1;
-    }
-
-    String id;
-    String psw;
 }
