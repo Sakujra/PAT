@@ -1,8 +1,10 @@
+package PAT;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class $1031 {
 
     public static void main(String[] args) {
         BufferedReader stringBuffer = new BufferedReader(new InputStreamReader(System.in));
