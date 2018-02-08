@@ -1,5 +1,4 @@
 package PAT;
-
 import java.io.BufferedInputStream;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -9,7 +8,7 @@ public class $1069 {
     public static void main(String[] args) {
         Scanner cin = new Scanner(new BufferedInputStream(System.in));
         String initN = cin.next();
-
+        long start = System.currentTimeMillis();
         char[] chars = initN.toCharArray();
         boolean isTheSame = true;
         for (int i = 1; i < 4; i++) {
@@ -37,6 +36,8 @@ public class $1069 {
             printResult(str1, str2, resStr);
             chars = resStr.toCharArray();
         }
+        long end = System.currentTimeMillis();
+        System.out.println("time：" + (end - start));
     }
 
     private static void printResult(String str1, String str2, String strR) {
