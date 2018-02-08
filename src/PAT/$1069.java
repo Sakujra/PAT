@@ -1,8 +1,10 @@
+package PAT;
+
 import java.io.BufferedInputStream;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Main {
+public class $1069 {
 
     public static void main(String[] args) {
         Scanner cin = new Scanner(new BufferedInputStream(System.in));
