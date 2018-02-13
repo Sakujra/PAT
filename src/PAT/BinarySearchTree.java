@@ -1,5 +1,7 @@
 package PAT;
 
+import javax.transaction.TransactionRequiredException;
+
 public class BinarySearchTree {
 
     private TreeNode root;
@@ -19,7 +21,9 @@ public class BinarySearchTree {
 
     private TreeNode insert(int data, TreeNode root) {
         if (root == null) {
-            return new TreeNode();
+            TreeNode node = new TreeNode();
+            node.data = data;
+            return node;
         }
         if (data < root.data) root.left = insert(data, root.left);
         else if (data > root.data) root.right = insert(data, root.right);
@@ -27,11 +31,31 @@ public class BinarySearchTree {
         return root;
     }
 
-    public TreeNode remove(int data) {
-        return null;
+    public void remove(int data) {
+        root = remove(data, root);
     }
 
-    public TreeNode findMin() throws Exception {
+    private TreeNode remove(int data, TreeNode root) {
+        if (root == null) return null;
+        if (data < root.data) root.left = remove(data, root.left);
+        else if (data > root.data) root.right = remove(data, root.right);
+        else {
+            if (root.right == null) return root.left;
+            if (root.left == null) return root.right;
+            TreeNode node = findMin(root.right);
+            root.right = removeMin(root.right);
+            root.data = node.data;
+        }
+        return root;
+    }
+
+    private TreeNode removeMin(TreeNode root) {
+        if (root.left == null) return null;
+        root.left = removeMin(root.left);
+        return root;
+    }
+
+    public TreeNode findMin() {
         return findMin(root);
     }
 
@@ -51,7 +75,7 @@ public class BinarySearchTree {
         return root;
     }
 
-    public TreeNode findMax() throws Exception {
+    public TreeNode findMax() {
         return findMax(root);
     }
 
@@ -73,14 +97,6 @@ public class BinarySearchTree {
         if (data > root.data) return find(data, root.right);
         else if (data < root.data) return find(data, root.left);
         else return root;
-    }
-
-    public boolean contains(int data) {
-        return false;
-    }
-
-    public void clear() {
-
     }
 
     public int size() {

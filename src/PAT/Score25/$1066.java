@@ -1,8 +1,10 @@
+package PAT.Score25;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class $1066 {
 
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -88,7 +90,7 @@ public class Main {
                     }
                 } else if (data > tree.data) {
                     tree.right = insert(tree.right, data);
-                    if (height(tree.right) - height(tree.left) == 2) {
+                       if (height(tree.right) - height(tree.left) == 2) {
                         if (data > tree.right.data)
                             tree = rightRightRotate(tree);
                         else
