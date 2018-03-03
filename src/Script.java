@@ -26,6 +26,6 @@ public class Script {
         graph.insertEdge(6, 7);
         graph.insertEdge(6, 8);
         graph.insertEdge(8, 9);
-        graph.print();
+        graph.BFS(0);
     }
 }
