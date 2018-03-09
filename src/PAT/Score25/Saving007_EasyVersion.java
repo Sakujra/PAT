@@ -43,6 +43,7 @@ public class Saving007_EasyVersion {
                     queue.add(nodes[i]);
                 }
             }
+
             boolean canJumpOut = false;
             while (!queue.isEmpty()) {
                 GNode node = queue.poll();

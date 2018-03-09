@@ -8,24 +8,21 @@ import java.util.Map;
 public class Script {
 
     public static void main(String[] args) {
-        GraphByTable graph = new GraphByTable(10);
-        graph.insertEdge(0, 1);
-        graph.insertEdge(0, 3);
-        graph.insertEdge(1, 2);
-        graph.insertEdge(1, 3);
-        graph.insertEdge(1, 5);
-        graph.insertEdge(2, 4);
-        graph.insertEdge(2, 5);
-        graph.insertEdge(3, 6);
-        graph.insertEdge(3, 7);
-        graph.insertEdge(4, 5);
-        graph.insertEdge(4, 9);
-        graph.insertEdge(5, 6);
-        graph.insertEdge(5, 8);
-        graph.insertEdge(5, 9);
-        graph.insertEdge(6, 7);
-        graph.insertEdge(6, 8);
-        graph.insertEdge(8, 9);
-        graph.BFS(0);
+        Dijkstra_Table graph  = new Dijkstra_Table(7);
+        graph.insertEdge(1,2,2);
+        graph.insertEdge(1,4,1);
+        graph.insertEdge(2,4,3);
+        graph.insertEdge(2,5,10);
+        graph.insertEdge(3,1,4);
+        graph.insertEdge(3,6,5);
+        graph.insertEdge(4,3,2);
+        graph.insertEdge(4,5,2);
+        graph.insertEdge(4,6,8);
+        graph.insertEdge(4,7,4);
+        graph.insertEdge(5,7,6);
+        graph.insertEdge(7,6,1);
+        graph.print();
+
+        graph.dijkstra(0);
     }
 }
