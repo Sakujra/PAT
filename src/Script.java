@@ -1,5 +1,8 @@
 import PAT.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -8,21 +11,23 @@ import java.util.Map;
 public class Script {
 
     public static void main(String[] args) {
-        Dijkstra_Table graph  = new Dijkstra_Table(7);
-        graph.insertEdge(1,2,2);
-        graph.insertEdge(1,4,1);
-        graph.insertEdge(2,4,3);
-        graph.insertEdge(2,5,10);
-        graph.insertEdge(3,1,4);
-        graph.insertEdge(3,6,5);
-        graph.insertEdge(4,3,2);
-        graph.insertEdge(4,5,2);
-        graph.insertEdge(4,6,8);
-        graph.insertEdge(4,7,4);
-        graph.insertEdge(5,7,6);
-        graph.insertEdge(7,6,1);
-        graph.print();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            String[] strings = reader.readLine().split(" ");
+            int N = Integer.parseInt(strings[0]);
+            int M = Integer.parseInt(strings[1]);
+            Prim graph = new Prim(N);
+            for (int i = 0; i < M; i++) {
+                strings = reader.readLine().split(" ");
+                int from = Integer.parseInt(strings[0]);
+                int to = Integer.parseInt(strings[1]);
+                int cost = Integer.parseInt(strings[2]);
+                graph.insertEdge(from, to, cost);
+            }
+            graph.primMST(2);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        graph.dijkstra(0);
     }
 }
