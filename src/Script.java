@@ -14,20 +14,22 @@ public class Script {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
             String[] strings = reader.readLine().split(" ");
-            int N = Integer.parseInt(strings[0]);
-            int M = Integer.parseInt(strings[1]);
-            Prim graph = new Prim(N);
-            for (int i = 0; i < M; i++) {
+            int caseCount = Integer.parseInt(strings[0]);
+            for (int seq = 0; seq < caseCount; seq++) {
                 strings = reader.readLine().split(" ");
-                int from = Integer.parseInt(strings[0]);
-                int to = Integer.parseInt(strings[1]);
-                int cost = Integer.parseInt(strings[2]);
-                graph.insertEdge(from, to, cost);
+                int m = Integer.parseInt(strings[0]);
+                int n = Integer.parseInt(strings[1]);
+                UnionFindSet set = new UnionFindSet(m);
+                for (int i = 0; i < n; i++) {
+                    strings = reader.readLine().split(" ");
+                    int c1 = Integer.parseInt(strings[0]);
+                    int c2 = Integer.parseInt(strings[1]);
+                    set.union(set.find(c1), set.find(c2));
+                }
+                System.out.println(set.getMaxSizeOfParts() + "\n");
             }
-            graph.primMST(2);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
